@@ -23,7 +23,7 @@ class SettingsController extends Controller {
             /* Controller for Index
             */
             $rows = \App\Settings::where("id",23)->paginate(20);
-            return view("Settings/index",compact("rows"));
+            return view("settings/index",compact("rows"));
 	}
 
 	
@@ -44,7 +44,7 @@ class SettingsController extends Controller {
                 Session::flash("flash_message_danger", "No Records founded");
                 return Redirect::route('settings')->withInput();
             }
-            return view("Settings/edit",compact("rows"));
+            return view("settings/edit",compact("rows"));
 	}
 
 	/**

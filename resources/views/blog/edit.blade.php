@@ -1,9 +1,12 @@
 @extends('app')
 @section('customcss')
 {!! HTML::style('css/blog/index.css') !!}
+{!! HTML::style('css/bootstrap-datetimepicker.css') !!}
 @endsection
 @section('customjs')
 {!! HTML::script('js/blog/index.js') !!}
+{!! HTML::script('js/moment.js') !!}
+{!! HTML::script('js/bootstrap-datetimepicker.js') !!}
 @endsection
 @section('content')
 
@@ -60,7 +63,17 @@ array(
 'id'=> 'category_id',
 'placeholder'=>'Enter Category Id')) !!}
 </div></div>
-
+<!------------------------------------------------------------->
+<!-- this is a row for a field blog_title -->
+<!------------------------------------------------------------->
+<div class="form-group  @if ($errors->has("blog_title")) has-error  @endif ">
+{!! Form::label('Show After', trans('Show After'), array('class'=>"col-md-4 control-label   ")) !!}
+<div class="col-md-6">{!! Form::text('showing_after', old('showing_after'),
+array( 'maxlength'=>155 ,
+'class'=>'form-control input-30',
+'id'=> 'showing_after',
+'placeholder'=>'Show on or after ')) !!}
+</div></div>
 <!------------------------------------------------------------->
 <!-- this is a row for a field status -->
 <!------------------------------------------------------------->

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Session;
 class BlogController extends Controller {
 
         public function __construct() {            
-            $this->middleware('auth',['except' => ['index']]);
+            $this->middleware('auth',['except' => ['index',"show"]]);
         }
 	/**
 	 * Display a listing of the resource.
@@ -27,7 +27,7 @@ class BlogController extends Controller {
             /* Controller for Index
             */
             $rows = \App\Blog::joinBlogCategoryAuthor()->paginate(20);
-            return view("Blog/index",compact("rows"));
+            return view("blog/index",compact("rows"));
 	}
         public function myBlogs()
 	{
@@ -36,7 +36,7 @@ class BlogController extends Controller {
             /* Controller for Index
             */
             $rows = \App\Blog::joinBlogCategoryAuthor("1")->paginate(20);
-            return view("Blog/index",compact("rows"));
+            return view("blog/index",compact("rows"));
 	}
 	/**
 	 * Show the form for creating a new resource.
@@ -49,7 +49,7 @@ class BlogController extends Controller {
             /* Controller for Create
             */
             $categories = \App\Categories::where("status","=",1)->lists('category','id');
-            return view("Blog/create")->with("categories",$categories);
+            return view("blog/create")->with("categories",$categories);
 	}
 
 	/**
@@ -72,6 +72,7 @@ class BlogController extends Controller {
                 $rows->post_comment=$input["post_comment"];
                 $rows->author_id= \Auth::user()->id;
                 $rows->category_id= $input["category_id"];
+                $rows->showing_after= $input["showing_after"];
                 $rows->status=1;
                 $rows->save();
                 Session::flash("flash_message", "Record Created");
@@ -91,19 +92,13 @@ class BlogController extends Controller {
             /**
             /* Controller for Edit
             */
-            if(\Auth::user()->is('admins'))
-            {        
-                $rows = \App\Blog::find($id);
-            } else {
-                $rows = \App\Blog::where("id","=",$id)->where("author_id","=",\Auth::user()->id)->first();
-            }
-            //dd($rows);
+            $rows = \App\Blog::find($id);
             if (empty($rows)) {
                 Session::flash("flash_message_danger", "No Records founded");
                 return Redirect::route('blog')->withInput();
             }
             $categories = \App\Categories::where("status","=",1)->lists('category','id');
-            return view("Blog/show",compact("rows"))->with("categories",$categories);;
+            return view("blog/show",compact("rows"))->with("categories",$categories);;
 	}
 
 	/**
@@ -129,7 +124,7 @@ class BlogController extends Controller {
                 return Redirect::route('blog')->withInput();
             }
             $categories = \App\Categories::where("status","=",1)->lists('category','id');
-            return view("Blog/edit",compact("rows"))->with("categories",$categories);;
+            return view("blog/edit",compact("rows"))->with("categories",$categories);;
 	}
 
 	/**
@@ -157,6 +152,7 @@ class BlogController extends Controller {
                         $rows->post_comment=$input["post_comment"];
                         $rows->status=$input["status"];
                         $rows->category_id= $input["category_id"];
+                        $rows->showing_after= $input["showing_after"];
                         $rows->save();
                         Session::flash("flash_message", "Record Updated");
                     }
@@ -184,7 +180,7 @@ class BlogController extends Controller {
                 return Redirect::route('blog')->withInput();
             }
             $categories = \App\Categories::where("status","=",1)->lists('category','id');
-            return view("Blog/delete",compact("rows"))->with("categories",$categories);;
+            return view("blog/delete",compact("rows"))->with("categories",$categories);;
 	}
 	/**
 	 * Remove the specified resource from storage.

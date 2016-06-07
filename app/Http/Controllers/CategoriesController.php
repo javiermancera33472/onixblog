@@ -25,7 +25,7 @@ class CategoriesController extends Controller {
             /* Controller for Index
             */
             $rows = \App\Categories::paginate(20);
-            return view("Categories/index",compact("rows"));
+            return view("categories/index",compact("rows"));
 	}
 
 	/**
@@ -38,7 +38,7 @@ class CategoriesController extends Controller {
             /**
             /* Controller for Create
             */
-            return view("Categories/create");
+            return view("categories/create");
 	}
 
 	/**
@@ -92,7 +92,7 @@ class CategoriesController extends Controller {
                 Session::flash("flash_message_danger", "No Records founded");
                 return Redirect::route('categories')->withInput();
             }
-            return view("Categories/edit",compact("rows"));
+            return view("categories/edit",compact("rows"));
 	}
 
 	/**
