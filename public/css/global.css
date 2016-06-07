@@ -1,0 +1,85 @@
+.jmActions
+{
+    border-radius: 5px; 
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    border: 1px solid #FF7D19;
+    width: 100%;
+}
+.panel-default > .panel-heading {
+  color: #000000;
+  background-color: #f8f8f8;
+  border-color: #FF7D19;
+}
+.panel-body{
+    border-color: #FF7D19;
+}
+.panel-default{
+    border-radius: 5px; 
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    border-color: #FF7D19;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #FF7D19;
+}
+.navbar {
+    border-color: #FF7D19;
+}
+
+.payment{
+    width: 100%;
+    border-radius: 5px; 
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    border: 2px solid #81BEF7;
+    
+}
+.paymentContent{
+    margin:15px;
+}
+.payment h3 {
+    background:#81BEF7;
+    color:white;
+    padding:10px;
+    margin:0;
+    
+}
+.billing h3 {
+    
+    background:#5FB404;
+    color:white;
+    padding:10px;
+    margin:0;
+    
+}
+.billing{
+    margin-top:10px;
+    width: 100%;
+    border-radius: 5px; 
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    border: 2px solid #5FB404;
+    
+}
+.totalOrder{
+    float: right;
+    margin-top: 12px;
+}
+
+.accountInfo{
+    margin-top:10px;
+    width: 100%;
+    border-radius: 5px; 
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    border: 2px solid #81BEF7;
+    
+}
+.accountInfo h3 {
+    background:#81BEF7;
+    color:white;
+    padding:10px;
+    margin:0;
+    
+}
