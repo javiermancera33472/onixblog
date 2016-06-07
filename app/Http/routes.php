@@ -40,7 +40,7 @@ Route::get('blog/edit/{id}','BlogController@edit');
 Route::post('blog/update',['as' => 'blog/update', 'uses' => 'BlogController@update']);
 Route::get('blog/delete/{id}','BlogController@delete');
 Route::post('blog/destroy',['as' => 'blog/destroy', 'uses' => 'BlogController@destroy']);
-
+Route::post('blog/search',['as' => 'blog/search', 'uses' => 'BlogController@search']);
 //////////////////////////////////////////////////////////////////////////////////////
 /**
 /* Routes for settings

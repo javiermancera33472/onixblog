@@ -1,3 +1,18 @@
+{!! Form::open((array('route' => 'blog/search', 'class' => 'form-horizontal'))) !!}
+    {!! Form::label('Category', trans('Category Id'), array('class'=>"col-md-2 control-label  required ")) !!}
+    
+    
+             <div class="col-xs-6">
+                <div class="input-group">
+                    {!! Form::select('category_id',['null'=>'Please Select'] + $categories, old('category_id'),array('class'=>'form-control input-30',
+            'id'=> 'category_id','placeholder'=>'Enter Category Id')) !!}
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default">Go</button>
+                    </span>
+                </div>
+            </div>
+{!! Form::close()!!}
+    <div class="clearfix"></div>
 @foreach ($rows as $row)
     <div class="panel panel-default" style="margin:10px;padding: 10px;">
         <h1>{!!$row->blog_title!!}</h1>

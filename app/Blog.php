@@ -20,7 +20,7 @@ class Blog extends Model {
         'status',
     ];
 
-    protected function joinBlogCategoryAuthor($type=null)
+    protected function joinBlogCategoryAuthor($type=null,$input=null)
     {
         //dd($type);
         $minDate = strtotime(config('jmSettings')['BLOG_TIME']);
@@ -34,8 +34,13 @@ class Blog extends Model {
                 ->where('blog.status','=',1)
                 ->whereRaw("((unix_timestamp(STR_TO_DATE(`showing_after`,'%m/%d/%Y %h:%i%p')) >= $minDate or showing_after = ''))")
                 ->orderBy("blog.post_date",strtotime($minDate));
-        if ($type==1) {
-            $rows->where("author_id","=",\Auth::user()->id);
+        if (\Auth::user()) {
+            if ($type==1) {
+                $rows->where("author_id","=",\Auth::user()->id);
+            }
+        }
+        if ($input['category_id']) {
+            $rows->where("category_id","=",$input['category_id']);
         }
         return $rows;
     }

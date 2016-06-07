@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Session;
 class BlogController extends Controller {
 
         public function __construct() {            
-            $this->middleware('auth',['except' => ['index',"show"]]);
+            $this->middleware('auth',['except' => ['index',"show","search"]]);
         }
 	/**
 	 * Display a listing of the resource.
@@ -26,8 +26,9 @@ class BlogController extends Controller {
             /**
             /* Controller for Index
             */
+            $categories = \App\Categories::where("status","=",1)->lists('category','id');
             $rows = \App\Blog::joinBlogCategoryAuthor()->paginate(20);
-            return view("blog/index",compact("rows"));
+            return view("blog/index",compact("rows"))->with("categories",$categories);;
 	}
         public function myBlogs()
 	{
@@ -35,8 +36,20 @@ class BlogController extends Controller {
             /**
             /* Controller for Index
             */
+            $categories = \App\Categories::where("status","=",1)->lists('category','id');
             $rows = \App\Blog::joinBlogCategoryAuthor("1")->paginate(20);
-            return view("blog/index",compact("rows"));
+            return view("blog/index",compact("rows"))->with("categories",$categories);
+	}
+        public function search(Request $request)
+	{
+            //$rows = \App\Blog::joinBlogCategoryAuthor();
+            /**
+            /* Controller for Index
+            */
+            $input = Request::input();  
+            $categories = \App\Categories::where("status","=",1)->lists('category','id');
+            $rows = \App\Blog::joinBlogCategoryAuthor("1",$input)->paginate(20);
+            return view("blog/index",compact("rows"))->with("categories",$categories);
 	}
 	/**
 	 * Show the form for creating a new resource.

@@ -6,6 +6,7 @@
 {!! HTML::script('js/blog/index.js') !!}
 @endsection
 @section('content')
+
     @include("partials/_list_blog")
 
 @endsection

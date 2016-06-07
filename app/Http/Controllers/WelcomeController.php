@@ -30,8 +30,9 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
+            $categories = \App\Categories::where("status","=",1)->lists('category','id');
             $rows = \App\Blog::joinBlogCategoryAuthor()->paginate(20);            
-            return view('welcome',compact("rows"));
+            return view('welcome',compact("rows"))->with("categories",$categories);
 	}
 
 }
