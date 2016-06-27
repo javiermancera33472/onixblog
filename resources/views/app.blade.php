@@ -72,11 +72,28 @@
             {!! \Session::get("flash_message_danger") !!}
         </div>
         @endif
-	@yield('content')
-
-	<!-- Scripts -->
-        <div style="text-align: center">
-            <p>Copyright © {{ $domainName }} <?php echo date("Y") ?> 
+        <div id="pagewrap">
+            <section id="content">
+                <h2>1st Content Area</h2>
+                <p>This page demonstrates a 3 column responsive layout, complete with responsive images and jquery slideshow.</p>
+            </section> 
+            <section id="middle">
+                @yield('content')
+            </section>
+            <aside id="sidebar">
+                <h2>3rd Content Area</h2>
+                <p>Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                <p>Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
+            </aside>
+            <div class="clearfix"></div>
+            <footer>
+                <div style="text-align: center">
+                    <p>Copyright © {{ $domainName }} <?php echo date("Y") ?> 
+                </div>
+            </footer>     
         </div>
+        <div class="clearfix"></div>
+	<!-- Scripts -->
 </body>
 </html>
